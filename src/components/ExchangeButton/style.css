@@ -1,0 +1,15 @@
+.exchange-button {
+    background: blue;
+    width: 28rem;
+    padding: 1rem 5rem;
+    color: white;
+    border: none;
+    border-radius: 1rem;
+    cursor: pointer;
+    font-weight: 700;
+}
+.exchange-button[disabled] {
+    pointer-events: none;
+    background: #9dd1ff;
+    color: white;
+}

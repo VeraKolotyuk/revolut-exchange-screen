@@ -1,0 +1,17 @@
+.exchange-success-modal {
+    background: white;
+    width: 25rem;
+    padding: 1rem 1.5rem;
+    border-radius: 1rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+.exchanged-info {
+    color: blue;
+    margin-top: .3rem;
+}
+
+.loader {
+    margin-bottom: 2rem;
+}

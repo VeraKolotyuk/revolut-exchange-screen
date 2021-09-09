@@ -1,0 +1,13 @@
+.exchange-form {
+    margin-top: 2.5rem;
+}
+
+.exchange-form .exchange-form-row {
+    display: flex;
+    justify-content: space-between;
+    width: 25rem;
+    background: white;
+    margin-bottom: 2rem;
+    border-radius: 1rem;
+    padding: 1.5rem;
+}

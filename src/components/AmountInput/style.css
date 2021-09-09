@@ -1,0 +1,14 @@
+.exchange-amount-input {
+    border: none;
+    outline: none;
+    text-align: right;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.form-error {
+    color: firebrick;
+    font-size: .8rem;
+    text-align: right;
+    font-weight: 400;
+}
