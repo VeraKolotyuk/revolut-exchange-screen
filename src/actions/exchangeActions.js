@@ -1,6 +1,6 @@
 import ACTION_TYPES from './actionTypes';
 import RequestSendApi from '../utils/RequestSendApi';
-import {updateWallet} from '../utils/exchangeUtils';
+import { updateWallet } from '../utils/exchangeUtils';
 
 export function fetchRatesSuccess(rates) {
     return dispatch => {

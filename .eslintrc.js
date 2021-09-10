@@ -1,7 +1,7 @@
 module.exports = {
     globals: {
-        "React": true,
-        "PropTypes": true
+        'React': true,
+        'PropTypes': true
     },
     env: {
         browser: true,
@@ -11,10 +11,8 @@ module.exports = {
     extends: [
         'eslint:recommended',
         'plugin:react/recommended',
-        'prettier',
-        'plugin:prettier/recommended'
     ],
-    parser: "babel-eslint",
+    parser: 'babel-eslint',
     parserOptions: {
         ecmaFeatures: {
             jsx: true
@@ -22,11 +20,10 @@ module.exports = {
         ecmaVersion: 2018,
         sourceType: 'module'
     },
-    plugins: ['react', 'prettier'],
+    plugins: ['react'],
     rules: {
         'linebreak-style': ['error', 'unix'],
         quotes: ['warn', 'single'],
-        semi: ['error', 'always'],
-        'prettier/prettier': 'error'
+        semi: ['error', 'always']
     }
 };
