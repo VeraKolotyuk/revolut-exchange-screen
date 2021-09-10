@@ -1,7 +1,7 @@
 import ACTION_TYPES from './actionTypes';
 import {INPUT_FROM_VALUE_TYPE, INPUT_TO_VALUE_TYPE} from '../utils/constants';
 
-export const onInputChange = ( value, inputType ) => {
+export const onInputChange = ( value: string, inputType: string ) => {
     let inputData = {};
     inputData[inputType] = value;
     return dispatch => {
@@ -13,7 +13,7 @@ export const onInputChange = ( value, inputType ) => {
 };
 
 
-export const onCurrencySelectChange = ( currency, selectType ) => {
+export const onCurrencySelectChange = ( currency: string, selectType: string ) => {
     let selectData = {};
     selectData[selectType] = currency;
     let inputFromData = {};

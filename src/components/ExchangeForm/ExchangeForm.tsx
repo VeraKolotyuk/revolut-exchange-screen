@@ -15,6 +15,22 @@ import {INPUT_TO_VALUE_TYPE,
         CURRENCY_TO_VALUE_TYPE
 } from '../../utils/constants';
 
+type Props = {
+    wallet: [any],
+    onInputChange: (a: string, b: string) => void,
+    currencyRate: number | null,
+    inputFromValue: number,
+    inputToValue: number,
+    currencyFromValue: string,
+    currencyToValue: string,
+    onSelectChange: (a: string, b: string) => void,
+};
+
+interface Options {
+    value: string,
+    label: string
+}
+
 const ExchangeForm = ({wallet,
                       onInputChange,
                       currencyRate,
@@ -23,16 +39,17 @@ const ExchangeForm = ({wallet,
                       currencyFromValue,
                       currencyToValue,
                       onSelectChange
-}) => {
-    const inputToChangeHandler = (value) => {
+}: Props) => {
+    const inputToChangeHandler = (value: string) => {
         onInputChange(value, INPUT_TO_VALUE_TYPE);
-        let convertedValue = value / currencyRate * -1;
+        //TODO:: extract method
+        let convertedValue = Number(value) / Number(currencyRate) * -1;
         onInputChange(formatValue(convertedValue), INPUT_FROM_VALUE_TYPE);
     };
 
-    const inputFromChangeHandler = (value) => {
+    const inputFromChangeHandler = (value: string) => {
         onInputChange(value, INPUT_FROM_VALUE_TYPE);
-        let convertedValue = currencyRate * value * -1;
+        let convertedValue = Number(currencyRate) * Number(value) * -1;
         onInputChange(formatValue(convertedValue), INPUT_TO_VALUE_TYPE);
     };
 
@@ -42,7 +59,7 @@ const ExchangeForm = ({wallet,
                 <div>
                     <CurrencySelect
                         value={currencyFromValue}
-                        onSelectChangeHandler={(selected) => {
+                        onSelectChangeHandler={(selected: Options) => {
                             onSelectChange(selected.value, CURRENCY_FROM_VALUE_TYPE);
                         }}
                     />
@@ -50,7 +67,7 @@ const ExchangeForm = ({wallet,
                 </div>
                 <AmountInput
                     value={inputFromValue}
-                    onInputChangeHandler = {(e) => {
+                    onInputChangeHandler = {(e: { target: HTMLInputElement }) => {
                         inputFromChangeHandler(e.target.value);
                     }}
                     showError={checkBalanceExceeds(inputFromValue, wallet, currencyFromValue)}
@@ -60,7 +77,7 @@ const ExchangeForm = ({wallet,
                 <div>
                     <CurrencySelect
                         value={currencyToValue}
-                        onSelectChangeHandler={(selected) => {
+                        onSelectChangeHandler={(selected: Options) => {
                             onSelectChange(selected.value, CURRENCY_TO_VALUE_TYPE);
                         }}
                     />
@@ -70,7 +87,7 @@ const ExchangeForm = ({wallet,
                 </div>
                 <AmountInput
                     value={inputToValue}
-                    onInputChangeHandler = {(e) => {
+                    onInputChangeHandler = {(e: { target: HTMLInputElement }) => {
                         inputToChangeHandler(e.target.value);
                     }}
                     showError={checkBalanceExceeds(inputToValue, wallet, currencyToValue)}

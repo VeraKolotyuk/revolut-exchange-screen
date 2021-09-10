@@ -2,7 +2,13 @@ import {IMaskInput} from 'react-imask';
 import './style.css';
 import {EXCEEDS_BALANCE_MESSAGE, EXCHANGE_INPUT_SCALE} from '../../utils/constants';
 
-const AmountInput = ({ value, onInputChangeHandler, showError }) => {
+type Props = {
+    value: number,
+    showError: boolean,
+    onInputChangeHandler: (a: { target: HTMLInputElement;}) => void,
+};
+
+const AmountInput = ({value, onInputChangeHandler, showError }: Props) => {
     const inputIMaskProps = {
         mask: Number,
         scale: EXCHANGE_INPUT_SCALE,
@@ -13,11 +19,12 @@ const AmountInput = ({ value, onInputChangeHandler, showError }) => {
         radix: '.',
         mapToRadix: ['.']
     };
+
     return (
         <div>
             <IMaskInput
                 {...inputIMaskProps}
-                type="text"
+                type='text'
                 value={value.toString()}
                 onChange={onInputChangeHandler}
                 placeholder={'0'}

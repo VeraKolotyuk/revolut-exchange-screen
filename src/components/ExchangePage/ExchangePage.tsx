@@ -17,6 +17,20 @@ import {onCurrencySelectChange, onInputChange} from '../../actions/formActions';
 import {getUserBalance} from '../../actions/userActions';
 import {exchange, fetchRates, toggleExchangeSuccessModal} from '../../actions/exchangeActions';
 
+type Props = {
+    wallet: [any],
+    showExchangeSuccessModal: boolean,
+    inputFromValue: number,
+    inputToValue: number,
+    currencyFromValue: string,
+    currencyToValue: string,
+    getUserBalance: () => void,
+    fetchRates: () => void,
+    toggleExchangeSuccessModal: (a: boolean) => void,
+    exchange: (a: number, b: string, c: number, d: string, e: [any]) => void,
+    rates: Object
+};
+
 const ExchangePage = ({ inputFromValue,
                         inputToValue,
                         currencyFromValue,
@@ -28,7 +42,7 @@ const ExchangePage = ({ inputFromValue,
                         toggleExchangeSuccessModal,
                         exchange,
                         rates
-}) => {
+}: Props) => {
     useEffect(() => {
         getUserBalance();
     }, [getUserBalance]);

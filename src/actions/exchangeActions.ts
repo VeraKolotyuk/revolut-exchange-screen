@@ -2,7 +2,7 @@ import ACTION_TYPES from './actionTypes';
 import RequestSendApi from '../utils/RequestSendApi';
 import { updateWallet } from '../utils/exchangeUtils';
 
-export function fetchRatesSuccess(rates) {
+export function fetchRatesSuccess(rates: Object) {
     return dispatch => {
         dispatch({
             type: ACTION_TYPES.FETCH_RATES_SUCCESS,
@@ -34,7 +34,12 @@ export function fetchRates() {
     };
 }
 
-export function exchange(exchangeFromValue, exchangeFromCurrency, exchangeToValue, exchangeToCurrency, wallet) {
+export function exchange(exchangeFromValue: number,
+                         exchangeFromCurrency: string,
+                         exchangeToValue: number,
+                         exchangeToCurrency: string,
+                         wallet: [any]
+) {
     let updatedWallet = updateWallet(exchangeFromValue,
                                     exchangeFromCurrency,
                                     exchangeToValue,
@@ -49,7 +54,7 @@ export function exchange(exchangeFromValue, exchangeFromCurrency, exchangeToValu
     };
 }
 
-export function toggleExchangeSuccessModal(isShown) {
+export function toggleExchangeSuccessModal(isShown: boolean) {
     return dispatch => {
         dispatch({
             type: ACTION_TYPES.TOGGLE_EXCHANGE_SUCCESS_MODAL,

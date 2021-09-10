@@ -2,7 +2,13 @@ import ReactModal from 'react-modal';
 import RevolutLoader from '../Loader/Loader';
 import './style.css';
 
-const ExchangeSuccessModal = ({ showExchangeSuccessModal, exchangeFromToMessage, toggleExchangeSuccessModal }) => {
+type Props = {
+    showExchangeSuccessModal: boolean,
+    exchangeFromToMessage: string,
+    toggleExchangeSuccessModal: (a:boolean) => void
+}
+
+const ExchangeSuccessModal = ({ showExchangeSuccessModal, exchangeFromToMessage, toggleExchangeSuccessModal }: Props) => {
     return (
         <ReactModal
             style={{

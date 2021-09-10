@@ -3,10 +3,20 @@ import {useState} from 'react';
 import './style.css';
 import {CURRENCY_SELECT_OPTIONS} from '../../utils/constants';
 
-const CurrencySelect = ({ value, onSelectChangeHandler }) => {
+type Props = {
+    onSelectChangeHandler: (a: Options) => void,
+    value: string,
+};
+
+interface Options {
+    value: string,
+    label: string
+}
+
+const CurrencySelect = ({ value, onSelectChangeHandler }: Props) => {
     const [selected, setSelected] = useState(value);
 
-    const onChange = (option) => {
+    const onChange = (option: Options) => {
         onSelectChangeHandler(option);
         setSelected(option.value);
     };

@@ -1,13 +1,13 @@
-import PropTypes from 'prop-types';
 import {getOperationName} from '../../utils/exchangeUtils';
 
-const Header = ({inputFromValue, currency}) => {
+type Props = {
+    inputFromValue: number,
+    currency: string
+}
+
+const Header = ({inputFromValue, currency}: Props) => {
     const operationName = getOperationName(inputFromValue);
     return (<h1>{operationName} {currency}</h1>);
-};
-
-Header.propTypes = {
-    currency: PropTypes.string
 };
 
 export default Header;
