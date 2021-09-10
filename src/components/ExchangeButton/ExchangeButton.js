@@ -8,7 +8,7 @@ const ExchangeButton = ({inputFromValue, currencyFromValue, currencyToValue, dis
         <button className='exchange-button' onClick={exchange} disabled={disabled}>
             {operationName} {currencyFromValue} {prep} {currencyToValue}
         </button>
-    )
-}
+    );
+};
 
 export default ExchangeButton;

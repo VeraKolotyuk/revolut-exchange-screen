@@ -1,6 +1,6 @@
-import {useEffect} from "react";
-import {POLL_RATES_INTERVAL, RATE_PRECISION} from "./constants";
-import currencyToSymbolMap from "currency-symbol-map";
+import {useEffect} from 'react';
+import {POLL_RATES_INTERVAL, RATE_PRECISION} from './constants';
+import currencyToSymbolMap from 'currency-symbol-map';
 
 export function usePollExchangeRates (fetchRatesCallback) {
     useEffect(() => {
@@ -9,7 +9,7 @@ export function usePollExchangeRates (fetchRatesCallback) {
             fetchRatesCallback();
         }, POLL_RATES_INTERVAL);
         return () => clearInterval(interval);
-    }, []);
+    }, [fetchRatesCallback]);
 }
 
 export function getCurrencyRate (rates, currencyToValue, currencyFromValue) {

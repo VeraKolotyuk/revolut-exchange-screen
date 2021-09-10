@@ -7,10 +7,11 @@ import FXRate from '../FXRate/FXRate';
 import ExchangeForm from '../ExchangeForm/ExchangeForm';
 import ExchangeButton from '../ExchangeButton/ExchangeButton';
 import ExchangeSuccessModal from '../ExchangeSuccessModal/ExchangeSuccessModal';
-import {usePollExchangeRates,
+import {
+    usePollExchangeRates,
     getCurrencyRate,
     isExchangeDisabled,
-    getExchangeFromToMsg
+    getExchangeFromToMsg, checkBalanceExceeds
 } from '../../utils/exchangeUtils';
 import {onCurrencySelectChange, onInputChange} from '../../actions/formActions';
 import {getUserBalance} from '../../actions/userActions';
@@ -30,14 +31,14 @@ const ExchangePage = ({ inputFromValue,
 }) => {
     useEffect(() => {
         getUserBalance();
-    }, []);
+    }, [getUserBalance]);
 
     usePollExchangeRates(fetchRates);
 
     const onExchangeClick = () => {
         exchange(inputFromValue, currencyFromValue, inputToValue, currencyToValue, wallet);
         toggleExchangeSuccessModal(true);
-    }
+    };
 
     const exchangeFromToMessage = getExchangeFromToMsg( currencyToValue,
                                                         currencyFromValue,
@@ -46,6 +47,8 @@ const ExchangePage = ({ inputFromValue,
                                                     );
     const currencyRate = getCurrencyRate(rates, currencyToValue, currencyFromValue);
     const exchangeDisabled = isExchangeDisabled(inputFromValue, inputToValue);
+    const balanceExceeds = checkBalanceExceeds(inputFromValue, wallet, currencyFromValue) ||
+                            checkBalanceExceeds(inputToValue, wallet, currencyToValue);
     return (
         <Fragment>
             <Header currency={currencyFromValue} inputFromValue={inputFromValue} />
@@ -60,7 +63,7 @@ const ExchangePage = ({ inputFromValue,
                             inputFromValue={inputFromValue}
                             currencyFromValue={currencyFromValue}
                             currencyToValue={currencyToValue}
-                            disabled={exchangeDisabled}
+                            disabled={exchangeDisabled || balanceExceeds}
             />
 
             <ExchangeSuccessModal showExchangeSuccessModal={showExchangeSuccessModal}

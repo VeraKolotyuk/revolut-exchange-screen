@@ -28,13 +28,13 @@ const ExchangeForm = ({wallet,
         onInputChange(value, INPUT_TO_VALUE_TYPE);
         let convertedValue = value / currencyRate * -1;
         onInputChange(formatValue(convertedValue), INPUT_FROM_VALUE_TYPE)
-    }
+    };
 
     const inputFromChangeHandler = (value) => {
         onInputChange(value, INPUT_FROM_VALUE_TYPE)
         let convertedValue = currencyRate * value * -1;
         onInputChange(formatValue(convertedValue), INPUT_TO_VALUE_TYPE)
-    }
+    };
 
     return (
         <div className='exchange-form'>
@@ -51,7 +51,7 @@ const ExchangeForm = ({wallet,
                 <AmountInput
                     value={inputFromValue}
                     onInputChangeHandler = {(e) => {
-                        inputFromChangeHandler(e.target.value)
+                        inputFromChangeHandler(e.target.value);
                     }}
                     showError={checkBalanceExceeds(inputFromValue, wallet, currencyFromValue)}
                 />
@@ -71,7 +71,7 @@ const ExchangeForm = ({wallet,
                 <AmountInput
                     value={inputToValue}
                     onInputChangeHandler = {(e) => {
-                        inputToChangeHandler(e.target.value)
+                        inputToChangeHandler(e.target.value);
                     }}
                     showError={checkBalanceExceeds(inputToValue, wallet, currencyToValue)}
                 />
