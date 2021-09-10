@@ -1,17 +1,12 @@
 import './style.css';
+import {getOperationName, getPrepForExchangedValue} from '../../utils/exchangeUtils';
 
-const ExchangeButton = (props) => {
-    //TODO::replace
-    const getOperationName = () => {
-        return props.inputFromValue <= 0 ? 'Sell' : 'Buy';
-    }
-    const getPrep = () => {
-        return props.inputFromValue <= 0 ? 'for' : 'with';
-    }
-
+const ExchangeButton = ({inputFromValue, currencyFromValue, currencyToValue, disabled, exchange}) => {
+    const operationName = getOperationName(inputFromValue);
+    const prep = getPrepForExchangedValue(inputFromValue);
     return (
-        <button className='exchange-button' onClick={props.exchange} disabled={props.disabled}>
-            {getOperationName()} {props.currencyFromValue} {getPrep()} {props.currencyToValue}
+        <button className='exchange-button' onClick={exchange} disabled={disabled}>
+            {operationName} {currencyFromValue} {prep} {currencyToValue}
         </button>
     )
 }

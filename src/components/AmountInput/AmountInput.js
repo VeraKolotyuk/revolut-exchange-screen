@@ -1,18 +1,19 @@
 import IMask from 'imask';
 import {useRef, useEffect} from 'react';
 import './style.css';
+import {EXCEEDS_BALANCE_MESSAGE, EXCHANGE_INPUT_SCALE} from '../../utils/constants';
 
-const AmountInput = (props) => {
+const AmountInput = ({ value, onInputChangeHandler, showError }) => {
     const input = useRef(null);
     useEffect(() => {
         IMask(input.current, {
-            mask: Number,  // enable number mask
-            scale: 2,  // digits after point, 0 for integers
-            signed: true,  // disallow negative
-            thousandsSeparator: '',  // any single char
-            padFractionalZeros: false,  // if true, then pads zeros at end to the length of scale
-            normalizeZeros: true,  // appends or removes zeros at ends
-            radix: '.',  // fractional delimiter
+            mask: Number,
+            scale: EXCHANGE_INPUT_SCALE,
+            signed: true,
+            thousandsSeparator: '',
+            padFractionalZeros: false,
+            normalizeZeros: true,
+            radix: '.',
             mapToRadix: ['.']
         });
     },[])
@@ -22,12 +23,12 @@ const AmountInput = (props) => {
             <input
                 ref={input}
                 type="text"
-                value={props.value}
-                onChange={props.onInputChangeHandler}
+                value={value}
+                onChange={onInputChangeHandler}
                 placeholder={"0"}
                 className="exchange-amount-input"
             />
-            {props.showError && <div className="form-error">exceeds balance</div>}
+            {showError && <div className="form-error">{EXCEEDS_BALANCE_MESSAGE}</div>}
         </div>
     )
 }

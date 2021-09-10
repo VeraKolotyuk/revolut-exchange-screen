@@ -1,88 +1,79 @@
-import AmountInput from "../AmountInput/AmountInput";
-import CurrencySelect from "../CurrencySelect/CurrencySelect";
-import UserBalance from "../UserBalance/UserBalance";
-import {bindActionCreators} from "redux";
-import {onCurrencySelectChange, onInputChange} from "../../actions/formActions";
-import {getUserBalance} from "../../actions/actions";
-import {exchange, fetchRates} from "../../actions/exchangeActions";
-import {connect} from "react-redux";
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+
+import AmountInput from '../AmountInput/AmountInput';
+import CurrencySelect from '../CurrencySelect/CurrencySelect';
+import UserBalance from '../UserBalance/UserBalance';
+import {onCurrencySelectChange, onInputChange} from '../../actions/formActions';
+import {getUserBalance} from '../../actions/userActions';
+import {exchange, fetchRates} from '../../actions/exchangeActions';
 import './style.css';
+import {formatValue, getCurrentBalance, checkBalanceExceeds} from '../../utils/exchangeUtils';
+import {INPUT_TO_VALUE_TYPE,
+        INPUT_FROM_VALUE_TYPE,
+        CURRENCY_FROM_VALUE_TYPE,
+        CURRENCY_TO_VALUE_TYPE
+} from '../../utils/constants';
 
-const ExchangeForm = (props) => {
-    const getCurrentBalance = (currency) => {
-        const walletItem = props.wallet.find((item) => {
-            return item.currency === currency;
-        });
-        return walletItem ? walletItem.balance : 0;
-    }
-
+const ExchangeForm = ({wallet,
+                      onInputChange,
+                      currencyRate,
+                      inputFromValue,
+                      inputToValue,
+                      currencyFromValue,
+                      currencyToValue,
+                      onSelectChange
+}) => {
     const inputToChangeHandler = (value) => {
-        props.onInputChange(value, 'inputToValue')
-        let convertedValue = value / props.currencyRate * -1;
-        if (!isNaN(convertedValue)) {
-            convertedValue = parseFloat(convertedValue.toFixed(2));
-        } else {
-            convertedValue = '';
-        }
-        props.onInputChange(convertedValue, 'inputFromValue')
+        onInputChange(value, INPUT_TO_VALUE_TYPE);
+        let convertedValue = value / currencyRate * -1;
+        onInputChange(formatValue(convertedValue), INPUT_FROM_VALUE_TYPE)
     }
 
     const inputFromChangeHandler = (value) => {
-        props.onInputChange(value, 'inputFromValue')
-        let convertedValue = props.currencyRate * value * -1;
-        if (!isNaN(convertedValue)) {
-            convertedValue = parseFloat(convertedValue.toFixed(2));
-        } else {
-            convertedValue = '';
-        }
-        props.onInputChange(convertedValue, 'inputToValue')
-    }
-
-    const isBalanceExceeds = (currency, value) => {
-        if (value && !isNaN(value) && value < 0){
-            return getCurrentBalance(currency) < -1 * value;
-        }
-        return false;
+        onInputChange(value, INPUT_FROM_VALUE_TYPE)
+        let convertedValue = currencyRate * value * -1;
+        onInputChange(formatValue(convertedValue), INPUT_TO_VALUE_TYPE)
     }
 
     return (
-        <div className="exchange-form">
-            <div className="exchange-form-row">
+        <div className='exchange-form'>
+            <div className='exchange-form-row'>
                 <div>
                     <CurrencySelect
-                        value={props.currencyFromValue}
+                        value={currencyFromValue}
                         onSelectChangeHandler={(selected) => {
-                            props.onSelectChange(selected.value, 'currencyFromValue')
+                            onSelectChange(selected.value, CURRENCY_TO_VALUE_TYPE)
                         }}
                     />
-                    <UserBalance currency={props.currencyFromValue} balance={getCurrentBalance(props.currencyFromValue)} />
+                    <UserBalance currency={currencyFromValue} balance={getCurrentBalance(wallet, currencyFromValue)} />
                 </div>
                 <AmountInput
-                    value={props.inputFromValue}
+                    value={inputFromValue}
                     onInputChangeHandler = {(e) => {
                         inputFromChangeHandler(e.target.value)
                     }}
-                    showError={isBalanceExceeds(props.currencyFromValue, props.inputFromValue)}
+                    showError={checkBalanceExceeds(inputFromValue, wallet, currencyFromValue)}
                 />
             </div>
-            <div className="exchange-form-row">
+            <div className='exchange-form-row'>
                 <div>
                     <CurrencySelect
-                        value={props.currencyToValue}
+                        value={currencyToValue}
                         onSelectChangeHandler={(selected) => {
-                            props.onSelectChange(selected.value, 'currencyToValue')
+                            onSelectChange(selected.value, CURRENCY_FROM_VALUE_TYPE)
                         }}
                     />
-                    <UserBalance currency={props.currencyToValue}
-                                 balance={getCurrentBalance(props.currencyToValue)}
+                    <UserBalance currency={currencyToValue}
+                                 balance={getCurrentBalance(wallet, currencyToValue)}
                     />
                 </div>
                 <AmountInput
-                    value={props.inputToValue}
+                    value={inputToValue}
                     onInputChangeHandler = {(e) => {
                         inputToChangeHandler(e.target.value)
                     }}
-                    showError={isBalanceExceeds(props.currencyToValue, props.inputToValue)}
+                    showError={checkBalanceExceeds(inputToValue, wallet, currencyToValue)}
                 />
             </div>
         </div>

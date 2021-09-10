@@ -1,12 +1,13 @@
 import PropTypes from 'prop-types';
 import currencyToSymbolMap from 'currency-symbol-map';
 import './style.css';
+import {RATE_PRECISION} from '../../utils/constants';
 
 const FXRate = (props) => {
     return (
         <div className="fx-rate">
             {currencyToSymbolMap(props.currencyFrom)}
-            1 = {currencyToSymbolMap(props.currencyTo)}{props.rate.toFixed(4)}
+            1 = {currencyToSymbolMap(props.currencyTo)}{props.rate.toFixed(RATE_PRECISION)}
         </div>
     )
 }

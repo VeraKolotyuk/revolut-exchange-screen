@@ -1,17 +1,17 @@
+import ReactModal from 'react-modal';
 import RevolutLoader from '../Loader/Loader';
 import './style.css';
-import ReactModal from 'react-modal';
 
-const ExchangeSuccessModal = (props) => {
+const ExchangeSuccessModal = ({ showExchangeSuccessModal, exchangeFromToMessage, toggleExchangeSuccessModal }) => {
     return (
-        <ReactModal>
-            isOpen={props.showExchangeSuccessModal}
-            onRequestClose={() => {props.toggleExchangeSuccessModal(false)}}
-            >
-            <div className="exchange-success-modal">
-                <div className="loader"><RevolutLoader /></div>
+        <ReactModal
+            isOpen={showExchangeSuccessModal}
+            onRequestClose={() => {toggleExchangeSuccessModal(false)}}
+        >
+            <div className='exchange-success-modal'>
+                <div className='loader'><RevolutLoader /></div>
                 <div>You exchanged</div>
-                <div className="exchanged-info">{props.getFromToMsg()}</div>
+                <div className='exchanged-info'>{exchangeFromToMessage}</div>
             </div>
         </ReactModal>
     )

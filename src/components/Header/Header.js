@@ -1,10 +1,9 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
+import {getOperationName} from '../../utils/exchangeUtils';
 
-const Header = (props) => {
-    const getOperationName = () => {
-        return props.inputFromValue <= 0 ? 'Sell' : 'Buy';
-    }
-    return (<h1>{getOperationName()} {props.currency}</h1>)
+const Header = ({inputFromValue, currency}) => {
+    const operationName = getOperationName(inputFromValue);
+    return (<h1>{operationName} {currency}</h1>)
 }
 
 Header.propTypes = {
