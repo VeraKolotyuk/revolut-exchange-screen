@@ -3,13 +3,13 @@ export const CURRENCY = {
     EUR: 'EUR',
     USD: 'USD',
     GBP: 'GBP'
-}
+};
 
 export const CURRENCY_SELECT_OPTIONS = [
     { value: 'USD', label: 'USD' },
     { value: 'EUR', label: 'EUR' },
     { value: 'GBP', label: 'GBP' }
-]
+];
 
 // Fetch exchange rates each 10 seconds
 export const POLL_RATES_INTERVAL = 1000000;

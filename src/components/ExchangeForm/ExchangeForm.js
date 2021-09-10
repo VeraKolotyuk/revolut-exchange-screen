@@ -27,13 +27,13 @@ const ExchangeForm = ({wallet,
     const inputToChangeHandler = (value) => {
         onInputChange(value, INPUT_TO_VALUE_TYPE);
         let convertedValue = value / currencyRate * -1;
-        onInputChange(formatValue(convertedValue), INPUT_FROM_VALUE_TYPE)
+        onInputChange(formatValue(convertedValue), INPUT_FROM_VALUE_TYPE);
     };
 
     const inputFromChangeHandler = (value) => {
-        onInputChange(value, INPUT_FROM_VALUE_TYPE)
+        onInputChange(value, INPUT_FROM_VALUE_TYPE);
         let convertedValue = currencyRate * value * -1;
-        onInputChange(formatValue(convertedValue), INPUT_TO_VALUE_TYPE)
+        onInputChange(formatValue(convertedValue), INPUT_TO_VALUE_TYPE);
     };
 
     return (
@@ -43,7 +43,7 @@ const ExchangeForm = ({wallet,
                     <CurrencySelect
                         value={currencyFromValue}
                         onSelectChangeHandler={(selected) => {
-                            onSelectChange(selected.value, CURRENCY_TO_VALUE_TYPE)
+                            onSelectChange(selected.value, CURRENCY_TO_VALUE_TYPE);
                         }}
                     />
                     <UserBalance currency={currencyFromValue} balance={getCurrentBalance(wallet, currencyFromValue)} />
@@ -61,7 +61,7 @@ const ExchangeForm = ({wallet,
                     <CurrencySelect
                         value={currencyToValue}
                         onSelectChangeHandler={(selected) => {
-                            onSelectChange(selected.value, CURRENCY_FROM_VALUE_TYPE)
+                            onSelectChange(selected.value, CURRENCY_FROM_VALUE_TYPE);
                         }}
                     />
                     <UserBalance currency={currencyToValue}
@@ -77,8 +77,8 @@ const ExchangeForm = ({wallet,
                 />
             </div>
         </div>
-    )
-}
+    );
+};
 
 const mapDispatchToProps = dispatch => ({
     onInputChange: bindActionCreators(onInputChange, dispatch),

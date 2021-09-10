@@ -12,18 +12,24 @@ export function fetchRatesSuccess(rates) {
 }
 
 export function fetchRates() {
+    const mockRates = {'USD': 1, 'EUR': 0.845185, 'GBP': 0.724022};
     return dispatch => {
         return RequestSendApi
             .fetchRates()
             .then(response => {
+                if (response.error) {
+                    //For interface testing in case api is not available
+                    //**** Temporary *****
+                    console.log(response.error);
+                    return dispatch(fetchRatesSuccess(mockRates));
+                }
                 return dispatch(fetchRatesSuccess(response.rates));
             })
             .catch(err => {
                 //For interface testing in case api is not available
                 //**** Temporary *****
-                const mockRates = {'USD': 1, 'EUR': 0.845185, 'GBP': 0.724022};
-                dispatch(fetchRatesSuccess(mockRates));
                 console.log(err);
+                return dispatch(fetchRatesSuccess(mockRates));
             });
     };
 }

@@ -16,7 +16,7 @@ const AmountInput = ({ value, onInputChangeHandler, showError }) => {
             radix: '.',
             mapToRadix: ['.']
         });
-    },[])
+    },[]);
 
     return (
         <div>
@@ -30,7 +30,7 @@ const AmountInput = ({ value, onInputChangeHandler, showError }) => {
             />
             {showError && <div className="form-error">{EXCEEDS_BALANCE_MESSAGE}</div>}
         </div>
-    )
-}
+    );
+};
 
 export default AmountInput;

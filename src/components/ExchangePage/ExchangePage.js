@@ -71,8 +71,8 @@ const ExchangePage = ({ inputFromValue,
                                   exchangeFromToMessage={exchangeFromToMessage}
             />
         </Fragment>
-    )
-}
+    );
+};
 const mapDispatchToProps = dispatch => ({
     onInputChange: bindActionCreators(onInputChange, dispatch),
     onSelectChange: bindActionCreators(onCurrencySelectChange, dispatch),

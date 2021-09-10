@@ -9,7 +9,7 @@ const CurrencySelect = ({ value, onSelectChangeHandler }) => {
     const onChange = (option) => {
         onSelectChangeHandler(option);
         setSelected(option.value);
-    }
+    };
 
     return (
         <Select className="currency-select"
@@ -17,7 +17,7 @@ const CurrencySelect = ({ value, onSelectChangeHandler }) => {
                 options={CURRENCY_SELECT_OPTIONS}
                 value={{value: selected, label: selected}}
         />
-    )
-}
+    );
+};
 
 export default CurrencySelect;

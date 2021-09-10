@@ -22,7 +22,7 @@ const ExchangeSuccessModal = ({ showExchangeSuccessModal, exchangeFromToMessage,
                 }
             }}
             isOpen={showExchangeSuccessModal}
-            onRequestClose={() => {toggleExchangeSuccessModal(false)}}
+            onRequestClose={() => {toggleExchangeSuccessModal(false);}}
         >
             <div className='exchange-success-modal'>
                 <div className='loader'><RevolutLoader /></div>
@@ -30,7 +30,7 @@ const ExchangeSuccessModal = ({ showExchangeSuccessModal, exchangeFromToMessage,
                 <div className='exchanged-info'>{exchangeFromToMessage}</div>
             </div>
         </ReactModal>
-    )
-}
+    );
+};
 
 export default ExchangeSuccessModal;

@@ -10,7 +10,7 @@ const RevolutLoader = () => {
             width={80}
             timeout={3000}
         />
-    )
-}
+    );
+};
 
 export default RevolutLoader;
