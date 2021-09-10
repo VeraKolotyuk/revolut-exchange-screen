@@ -17,7 +17,7 @@ export function getCurrencyRate (rates, currencyToValue, currencyFromValue) {
 }
 
 export function isExchangeDisabled (inputFromValue, inputToValue) {
-    return isNaN(inputFromValue) || isNaN(inputToValue);
+    return !inputFromValue || isNaN(inputFromValue) || isNaN(inputToValue);
 }
 
 export function getExchangeFromToMsg (currencyToValue, currencyFromValue, inputFromValue, inputToValue) {

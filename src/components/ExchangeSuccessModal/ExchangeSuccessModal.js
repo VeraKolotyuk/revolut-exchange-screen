@@ -5,6 +5,22 @@ import './style.css';
 const ExchangeSuccessModal = ({ showExchangeSuccessModal, exchangeFromToMessage, toggleExchangeSuccessModal }) => {
     return (
         <ReactModal
+            style={{
+                content: {
+                    position: 'absolute',
+                    left: '0',
+                    right: '0',
+                    margin: 'auto',
+                    width: '450px',
+                    background: '#fff',
+                    overflow: 'auto',
+                    outline: 'none',
+                    padding: '20px',
+                    boxShadow: '0 0 30px rgba(153, 153, 153, 0.15)',
+                    borderRadius: '15px',
+                    border: 'none'
+                }
+            }}
             isOpen={showExchangeSuccessModal}
             onRequestClose={() => {toggleExchangeSuccessModal(false)}}
         >
