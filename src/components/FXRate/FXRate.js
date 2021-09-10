@@ -1,11 +1,11 @@
 import currencyToSymbolMap from 'currency-symbol-map';
 import './style.css';
 
-const FXRate = (props) => {
+const FXRate = ({currencyFrom, currencyTo, rate }) => {
     return (
         <div className="fx-rate">
-            {currencyToSymbolMap(props.currencyFrom)}
-            1 = {currencyToSymbolMap(props.currencyTo)}{props.rate}
+            {currencyToSymbolMap(currencyFrom)}
+            1 = {currencyToSymbolMap(currencyTo)}{rate}
         </div>
     );
 };
