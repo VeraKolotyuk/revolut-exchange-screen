@@ -3,8 +3,8 @@ import {CURRENCY} from "../utils/constants";
 
 const form = (
     state = {
-        inputFromValue: 0,
-        inputToValue: 0,
+        inputFromValue: '',
+        inputToValue: '',
         currencyFromValue: CURRENCY.EUR,
         currencyToValue: CURRENCY.USD
     },

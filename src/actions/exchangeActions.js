@@ -1,5 +1,6 @@
-import ACTION_TYPES from "./actionTypes";
-import RequestSendApi from "../utils/RequestSendApi";
+import ACTION_TYPES from './actionTypes';
+import RequestSendApi from '../utils/RequestSendApi';
+import {updateWallet} from '../utils/exchangeUtils';
 
 export function fetchRatesSuccess(rates) {
     return dispatch => {
@@ -18,15 +19,17 @@ export function fetchRates() {
                 return dispatch(fetchRatesSuccess(response.rates));
             })
             .catch(err => {
-                //return sendRequestFailure(err);
+                console.log(err);
             });
     };
 }
 
 export function exchange(exchangeFromValue, exchangeFromCurrency, exchangeToValue, exchangeToCurrency, wallet) {
-    let updatedWallet = [...wallet];
-    updatedWallet.find((item) => item.currency === exchangeFromCurrency)['balance'] += Number(exchangeFromValue);
-    updatedWallet.find((item) => item.currency === exchangeToCurrency)['balance'] += Number(exchangeToValue);
+    let updatedWallet = updateWallet(exchangeFromValue,
+                                    exchangeFromCurrency,
+                                    exchangeToValue,
+                                    exchangeToCurrency,
+                                    wallet);
 
     return dispatch => {
         dispatch({

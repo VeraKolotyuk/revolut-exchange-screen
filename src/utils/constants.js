@@ -34,3 +34,9 @@ export const CURRENCY_FROM_VALUE_TYPE = 'currencyFromValue';
 
 //Type of value for bottom currency select
 export const CURRENCY_TO_VALUE_TYPE = 'currencyToValue'
+
+export const USER_WALLET = [
+    {"currency": CURRENCY.EUR, "balance": 126000.25},
+    {"currency": CURRENCY.USD, "balance": 6000.00},
+    {"currency": CURRENCY.GBP, "balance": 135.50}
+]

@@ -1,5 +1,5 @@
 import {useEffect} from "react";
-import {POLL_RATES_INTERVAL} from "./constants";
+import {POLL_RATES_INTERVAL, RATE_PRECISION} from "./constants";
 import currencyToSymbolMap from "currency-symbol-map";
 
 export function usePollExchangeRates (fetchRatesCallback) {
@@ -13,11 +13,12 @@ export function usePollExchangeRates (fetchRatesCallback) {
 }
 
 export function getCurrencyRate (rates, currencyToValue, currencyFromValue) {
-    return rates[currencyToValue] / rates[currencyFromValue];
+    const rate = rates[currencyToValue] / rates[currencyFromValue];
+    return isNaN(rate) ? null : rate.toFixed(RATE_PRECISION);
 }
 
 export function isExchangeDisabled (inputFromValue, inputToValue) {
-    return !inputFromValue || isNaN(inputFromValue) || isNaN(inputToValue);
+    return !Number(inputFromValue) || isNaN(inputFromValue) || isNaN(inputToValue);
 }
 
 export function getExchangeFromToMsg (currencyToValue, currencyFromValue, inputFromValue, inputToValue) {
@@ -56,4 +57,11 @@ export function formatValue (value) {
         convertedValue = parseFloat(value.toFixed(2));
     }
     return convertedValue;
+}
+
+export function updateWallet (exchangeFromValue, exchangeFromCurrency, exchangeToValue, exchangeToCurrency, wallet) {
+    let updatedWallet = [...wallet];
+    updatedWallet.find((item) => item.currency === exchangeFromCurrency)['balance'] += Number(exchangeFromValue);
+    updatedWallet.find((item) => item.currency === exchangeToCurrency)['balance'] += Number(exchangeToValue);
+    return updatedWallet;
 }

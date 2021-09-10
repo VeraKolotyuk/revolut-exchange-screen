@@ -2,7 +2,7 @@ import ACTION_TYPES from '../actions/actionTypes';
 
 const user = (
     state = {
-        wallet: [{"currency": "EUR", "balance": 126000.25},{"currency": "USD", "balance": 6000.00},{"currency": "GBP", "balance": 135.50}]
+        wallet: []
     },
     action
 ) => {
