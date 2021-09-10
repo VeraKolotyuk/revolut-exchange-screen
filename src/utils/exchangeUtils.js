@@ -14,7 +14,7 @@ export function usePollExchangeRates (fetchRatesCallback) {
 
 export function getCurrencyRate (rates, currencyToValue, currencyFromValue) {
     const rate = rates[currencyToValue] / rates[currencyFromValue];
-    return isNaN(rate) ? null : rate.toFixed(RATE_PRECISION);
+    return isNaN(rate) ? null : Number(rate.toFixed(RATE_PRECISION));
 }
 
 export function isExchangeDisabled (inputFromValue, inputToValue) {
@@ -23,11 +23,9 @@ export function isExchangeDisabled (inputFromValue, inputToValue) {
 
 export function getExchangeFromToMsg (currencyToValue, currencyFromValue, inputFromValue, inputToValue) {
     if (inputFromValue < 0) {
-        return (`${currencyToSymbolMap(currencyFromValue)}${Math.abs(inputFromValue)} to 
-                ${currencyToSymbolMap(currencyToValue)}${Math.abs(inputToValue)}`);
+        return (`${currencyToSymbolMap(currencyFromValue)}${Math.abs(inputFromValue)} to ${currencyToSymbolMap(currencyToValue)}${Math.abs(inputToValue)}`);
     } else {
-        return (`${currencyToSymbolMap(currencyToValue)}${Math.abs(inputToValue)} to 
-                ${currencyToSymbolMap(currencyFromValue)}${Math.abs(inputFromValue)}`);
+        return (`${currencyToSymbolMap(currencyToValue)}${Math.abs(inputToValue)} to ${currencyToSymbolMap(currencyFromValue)}${Math.abs(inputFromValue)}`);
     }
 }
 

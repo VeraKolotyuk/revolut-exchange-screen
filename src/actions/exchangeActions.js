@@ -6,7 +6,7 @@ export function fetchRatesSuccess(rates) {
     return dispatch => {
         dispatch({
             type: ACTION_TYPES.FETCH_RATES_SUCCESS,
-            rates: {'USD': 1, 'EUR': 0.845185, 'GBP': 0.724022}
+            rates: rates
         });
     };
 }
@@ -19,6 +19,10 @@ export function fetchRates() {
                 return dispatch(fetchRatesSuccess(response.rates));
             })
             .catch(err => {
+                //For interface testing in case api is not available
+                //**** Temporary *****
+                const mockRates = {'USD': 1, 'EUR': 0.845185, 'GBP': 0.724022};
+                dispatch(fetchRatesSuccess(mockRates));
                 console.log(err);
             });
     };
