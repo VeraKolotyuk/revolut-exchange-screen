@@ -62,6 +62,7 @@ const ExchangeForm = ({wallet,
                         onSelectChangeHandler={(selected: Options) => {
                             onSelectChange(selected.value, CURRENCY_FROM_VALUE_TYPE);
                         }}
+                        valueToRemove={currencyToValue}
                     />
                     <UserBalance currency={currencyFromValue} balance={getCurrentBalance(wallet, currencyFromValue)} />
                 </div>
@@ -80,6 +81,7 @@ const ExchangeForm = ({wallet,
                         onSelectChangeHandler={(selected: Options) => {
                             onSelectChange(selected.value, CURRENCY_TO_VALUE_TYPE);
                         }}
+                        valueToRemove={currencyFromValue}
                     />
                     <UserBalance currency={currencyToValue}
                                  balance={getCurrentBalance(wallet, currencyToValue)}

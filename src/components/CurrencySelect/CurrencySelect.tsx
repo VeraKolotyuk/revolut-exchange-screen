@@ -6,6 +6,7 @@ import {CURRENCY_SELECT_OPTIONS} from '../../utils/constants';
 type Props = {
     onSelectChangeHandler: (a: Options) => void,
     value: string,
+    valueToRemove: string
 };
 
 interface Options {
@@ -13,7 +14,7 @@ interface Options {
     label: string
 }
 
-const CurrencySelect = ({ value, onSelectChangeHandler }: Props) => {
+const CurrencySelect = ({ value, onSelectChangeHandler, valueToRemove }: Props) => {
     const [selected, setSelected] = useState(value);
 
     const onChange = (option: Options) => {
@@ -24,7 +25,7 @@ const CurrencySelect = ({ value, onSelectChangeHandler }: Props) => {
     return (
         <Select className="currency-select"
                 onChange={onChange}
-                options={CURRENCY_SELECT_OPTIONS}
+                options={CURRENCY_SELECT_OPTIONS.filter(option => option.value !== valueToRemove)}
                 value={{value: selected, label: selected}}
         />
     );
