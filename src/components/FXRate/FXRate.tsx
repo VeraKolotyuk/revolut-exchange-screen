@@ -1,5 +1,5 @@
 import currencyToSymbolMap from 'currency-symbol-map';
-import './style.css';
+import styles from './style.module.css';
 
 type Props = {
     currencyFrom: string,
@@ -9,7 +9,7 @@ type Props = {
 
 const FXRate = ({currencyFrom, currencyTo, rate }: Props) => {
     return (
-        <div className="fx-rate">
+        <div className={styles['fx-rate']}>
             {currencyToSymbolMap(currencyFrom)}
             1 = {currencyToSymbolMap(currencyTo)}{rate}
         </div>

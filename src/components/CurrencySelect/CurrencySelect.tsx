@@ -1,6 +1,6 @@
 import Select from 'react-select';
 import {useState} from 'react';
-import './style.css';
+import styles from './style.module.css';
 import {CURRENCY_SELECT_OPTIONS} from '../../utils/constants';
 
 type Props = {
@@ -23,7 +23,7 @@ const CurrencySelect = ({ value, onSelectChangeHandler, valueToRemove }: Props) 
     };
 
     return (
-        <Select className="currency-select"
+        <Select className={styles['currency-select']}
                 onChange={onChange}
                 options={CURRENCY_SELECT_OPTIONS.filter(option => option.value !== valueToRemove)}
                 value={{value: selected, label: selected}}

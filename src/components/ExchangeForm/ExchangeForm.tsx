@@ -7,7 +7,7 @@ import UserBalance from '../UserBalance/UserBalance';
 import {onCurrencySelectChange, onInputChange} from '../../actions/formActions';
 import {getUserBalance} from '../../actions/userActions';
 import {exchange, fetchRates} from '../../actions/exchangeActions';
-import './style.css';
+import styles from './style.module.css';
 import {formatValue, getCurrentBalance, checkBalanceExceeds} from '../../utils/exchangeUtils';
 import {INPUT_TO_VALUE_TYPE,
         INPUT_FROM_VALUE_TYPE,
@@ -54,8 +54,8 @@ const ExchangeForm = ({wallet,
     };
 
     return (
-        <div className='exchange-form'>
-            <div className='exchange-form-row'>
+        <div className={styles['exchange-form']}>
+            <div className={styles['exchange-form-row']}>
                 <div>
                     <CurrencySelect
                         value={currencyFromValue}
@@ -74,7 +74,7 @@ const ExchangeForm = ({wallet,
                     showError={checkBalanceExceeds(inputFromValue, wallet, currencyFromValue)}
                 />
             </div>
-            <div className='exchange-form-row'>
+            <div className={styles['exchange-form-row']}>
                 <div>
                     <CurrencySelect
                         value={currencyToValue}

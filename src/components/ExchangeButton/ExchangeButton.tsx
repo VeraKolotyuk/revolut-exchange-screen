@@ -1,4 +1,4 @@
-import './style.css';
+import styles from './style.module.css';
 import {MouseEventHandler} from 'react';
 import {getOperationName, getPrepForExchangedValue} from '../../utils/exchangeUtils';
 
@@ -14,7 +14,7 @@ const ExchangeButton = ({inputFromValue, currencyFromValue, currencyToValue, dis
     const operationName = getOperationName(inputFromValue);
     const prep = getPrepForExchangedValue(inputFromValue);
     return (
-        <button className='exchange-button' onClick={exchange} disabled={disabled}>
+        <button className={styles['exchange-button']} onClick={exchange} disabled={disabled}>
             {operationName} {currencyFromValue} {prep} {currencyToValue}
         </button>
     );

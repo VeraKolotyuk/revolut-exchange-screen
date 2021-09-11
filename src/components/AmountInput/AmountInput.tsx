@@ -1,5 +1,5 @@
 import MaskedInput from './MaskedInput';
-import './style.css';
+import styles from './style.module.css';
 import {EXCEEDS_BALANCE_MESSAGE} from '../../utils/constants';
 
 type Props = {
@@ -15,7 +15,7 @@ const AmountInput = ({value, onInputChangeHandler, showError }: Props) => {
                 value={value.toString()}
                 onInputChangeHandler={onInputChangeHandler}
             />
-            {showError && <div className="form-error">{EXCEEDS_BALANCE_MESSAGE}</div>}
+            {showError && <div className={styles['form-error']}>{EXCEEDS_BALANCE_MESSAGE}</div>}
         </div>
     );
 };

@@ -1,5 +1,6 @@
 import {IMaskInput} from 'react-imask';
 import {EXCHANGE_INPUT_SCALE} from '../../utils/constants';
+import styles from './style.module.css';
 
 const MaskedInput = ({value, onInputChangeHandler}) => {
     const inputIMaskProps = {
@@ -19,7 +20,7 @@ const MaskedInput = ({value, onInputChangeHandler}) => {
             value={value.toString()}
             onChange={onInputChangeHandler}
             placeholder={'0'}
-            className="exchange-amount-input"
+            className={styles['exchange-amount-input']}
         />
     );
 };

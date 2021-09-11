@@ -1,5 +1,5 @@
 import currencyToSymbolMap from 'currency-symbol-map';
-import './style.css';
+import styles from './style.module.css';
 
 type Props = {
     currency: string,
@@ -7,7 +7,7 @@ type Props = {
 };
 
 const UserBalance = ({ currency, balance }: Props) => {
-    return (<div className='user-balance-msg'>Balance: {currencyToSymbolMap(currency)}{balance}</div>);
+    return (<div className={styles['user-balance-msg']}>Balance: {currencyToSymbolMap(currency)}{balance}</div>);
 };
 
 export default UserBalance;
