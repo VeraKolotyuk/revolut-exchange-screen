@@ -15,7 +15,7 @@ import {CURRENCY} from './constants';
 //formatValue tests
 describe('formatValue tests', () => {
     test('formatValue with float number', () => {
-        expect(formatValue(2.45565)).toBe(2.46);
+        expect(formatValue(2.45565)).toBe('2.46');
     });
 
     test('formatValue with not a number', () => {
