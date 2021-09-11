@@ -1,0 +1,13 @@
+.container {
+  font-family: Lato, Arial, sans-serif;
+  width: 40rem;
+  margin: 0 auto;
+}
+
+body {
+  background: #f1f1f1;
+}
+
+h1 {
+  margin-bottom: .5rem;
+}
