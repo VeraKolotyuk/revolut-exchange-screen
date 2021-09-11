@@ -1,6 +1,6 @@
-import {IMaskInput} from 'react-imask';
+import MaskedInput from './MaskedInput';
 import './style.css';
-import {EXCEEDS_BALANCE_MESSAGE, EXCHANGE_INPUT_SCALE} from '../../utils/constants';
+import {EXCEEDS_BALANCE_MESSAGE} from '../../utils/constants';
 
 type Props = {
     value: number,
@@ -9,26 +9,11 @@ type Props = {
 };
 
 const AmountInput = ({value, onInputChangeHandler, showError }: Props) => {
-    const inputIMaskProps = {
-        mask: Number,
-        scale: EXCHANGE_INPUT_SCALE,
-        signed: true,
-        thousandsSeparator: '',
-        padFractionalZeros: false,
-        normalizeZeros: true,
-        radix: '.',
-        mapToRadix: ['.']
-    };
-
     return (
         <div>
-            <IMaskInput
-                {...inputIMaskProps}
-                type='text'
+            <MaskedInput
                 value={value.toString()}
-                onChange={onInputChangeHandler}
-                placeholder={'0'}
-                className="exchange-amount-input"
+                onInputChangeHandler={onInputChangeHandler}
             />
             {showError && <div className="form-error">{EXCEEDS_BALANCE_MESSAGE}</div>}
         </div>
