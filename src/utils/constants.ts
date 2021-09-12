@@ -12,7 +12,7 @@ export const CURRENCY_SELECT_OPTIONS = [
 ];
 
 // Fetch exchange rates each 10 seconds
-export const POLL_RATES_INTERVAL = 1000000;
+export const POLL_RATES_INTERVAL = 10000;
 
 //Precision for rate info
 export const RATE_PRECISION = 4;
