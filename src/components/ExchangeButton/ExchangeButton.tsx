@@ -1,5 +1,5 @@
 import styles from './style.module.css';
-import {MouseEventHandler} from 'react';
+import {FunctionComponent, MouseEventHandler} from 'react';
 import {getOperationName, getPrepForExchangedValue} from '../../utils/exchangeUtils';
 
 type Props = {
@@ -10,7 +10,7 @@ type Props = {
     exchange: MouseEventHandler<HTMLButtonElement>
 };
 
-const ExchangeButton = ({inputFromValue, currencyFromValue, currencyToValue, disabled, exchange}: Props) => {
+const ExchangeButton: FunctionComponent<Props> = ({inputFromValue, currencyFromValue, currencyToValue, disabled, exchange}: Props) => {
     const operationName = getOperationName(inputFromValue);
     const prep = getPrepForExchangedValue(inputFromValue);
     return (

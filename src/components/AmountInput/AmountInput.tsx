@@ -1,6 +1,7 @@
 import MaskedInput from './MaskedInput';
 import styles from './style.module.css';
 import {EXCEEDS_BALANCE_MESSAGE} from '../../utils/constants';
+import {FunctionComponent} from 'react';
 
 type Props = {
     value: number,
@@ -8,7 +9,7 @@ type Props = {
     onInputChangeHandler: (a: { target: HTMLInputElement;}) => void,
 };
 
-const AmountInput = ({value, onInputChangeHandler, showError }: Props) => {
+const AmountInput: FunctionComponent<Props> = ({value, onInputChangeHandler, showError }: Props) => {
     return (
         <div>
             <MaskedInput

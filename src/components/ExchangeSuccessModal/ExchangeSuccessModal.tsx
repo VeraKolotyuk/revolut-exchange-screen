@@ -1,6 +1,7 @@
 import ReactModal from 'react-modal';
 import RevolutLoader from '../Loader/Loader';
 import styles from './style.module.css';
+import {FunctionComponent} from 'react';
 
 type Props = {
     showExchangeSuccessModal: boolean,
@@ -8,7 +9,7 @@ type Props = {
     toggleExchangeSuccessModal: (a:boolean) => void
 }
 
-const ExchangeSuccessModal = ({ showExchangeSuccessModal, exchangeFromToMessage, toggleExchangeSuccessModal }: Props) => {
+const ExchangeSuccessModal: FunctionComponent<Props> = ({ showExchangeSuccessModal, exchangeFromToMessage, toggleExchangeSuccessModal }: Props) => {
     return (
         <ReactModal
             style={{

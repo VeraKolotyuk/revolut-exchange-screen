@@ -43,13 +43,13 @@ const ExchangeForm = ({wallet,
     const inputToChangeHandler = (value: string) => {
         onInputChange(value, INPUT_TO_VALUE_TYPE);
         //TODO:: extract method
-        let convertedValue = Number(value) / Number(currencyRate) * -1;
+        const convertedValue = Number(value) / Number(currencyRate) * -1;
         onInputChange(formatValue(convertedValue), INPUT_FROM_VALUE_TYPE);
     };
 
     const inputFromChangeHandler = (value: string) => {
         onInputChange(value, INPUT_FROM_VALUE_TYPE);
-        let convertedValue = Number(currencyRate) * Number(value) * -1;
+        const convertedValue = Number(currencyRate) * Number(value) * -1;
         onInputChange(formatValue(convertedValue), INPUT_TO_VALUE_TYPE);
     };
 

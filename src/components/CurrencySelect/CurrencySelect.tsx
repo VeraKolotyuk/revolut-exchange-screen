@@ -1,5 +1,5 @@
 import Select from 'react-select';
-import {useState} from 'react';
+import {FunctionComponent, useState} from 'react';
 import styles from './style.module.css';
 import {CURRENCY_SELECT_OPTIONS} from '../../utils/constants';
 
@@ -13,7 +13,7 @@ interface Options {
     label: string
 }
 
-const CurrencySelect = ({ value, onSelectChangeHandler }: Props) => {
+const CurrencySelect: FunctionComponent<Props> = ({ value, onSelectChangeHandler }: Props) => {
     const [selected, setSelected] = useState(value);
 
     const onChange = (option: Options) => {
